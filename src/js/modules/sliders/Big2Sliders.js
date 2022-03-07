@@ -15,7 +15,7 @@ export default class Big2Sliders extends MainSliders {
             nextSlide.addEventListener('click', () => {
                 this.showSlide(++this.slideIndex);
             });
-        });
+        });  
 
         this.previousSlide.forEach(previousSlide => {
             previousSlide.addEventListener('click', () => {
