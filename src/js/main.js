@@ -1,6 +1,7 @@
 import BigSliders from './modules/sliders/BigSliders';
 import Big2Sliders from './modules/sliders/Big2Sliders';
 import Mini1Slider from './modules/sliders/Mini1Slider';
+import Mini2Slider from './modules/sliders/Mini2Slider';
 
 
 
@@ -29,33 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     NewMini1Slider.plusSlide();
     NewMini1Slider.transformation();
+
+    const NewMini2Slider = new Mini1Slider({
+        btnNextSelector: ".slick-next",
+        btnPreviousSelector: ".slick-prev",
+        perantSlidesSelector: ".modules__content-slider"
+    });
+    NewMini2Slider.plusSlide();
+    NewMini2Slider.transformation();
     
-
-
-
-    // const perantSlides = document.querySelector('.page');
-    // const slides = perantSlides.children;
-    // const es = perantSlides.childNodes;
-    // // console.log(slides);
-    // // console.log(es);
-
-
-
-
-    // for(let i = 0; i < slides.length; i++) {
-    //     console.log(slides[i]);
-    // }
-    // slides.forEach(item => {
-    //     console.log(item);
-    // });
-    // es.forEach(es => {
-    //     console.log(es);
-    // });
-
-    // const s = document.querySelector('.moduleapp');
-    // const es = s.children;
-    // console.log(es);
-
 
 
 
