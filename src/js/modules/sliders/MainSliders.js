@@ -5,4 +5,8 @@ export default class MainSliders {
         this.slides = this.perantSlides.childNodes ;
         this.slideIndex = 1;
     }
+
+    // h(){
+    //     console.log(this.slides[0]);
+    // }
 }

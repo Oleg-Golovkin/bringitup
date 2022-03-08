@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         perantSlidesSelector: ".page"
     });
     NewBigSliders.plusSlide();
+    // NewBigSliders.h();
 
     const NewBig2Sliders = new Big2Sliders({
         btnNextSelector: ".next",
@@ -17,12 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     NewBig2Sliders.plusSlide();
 
-    // const New2Sliders = new Sliders({
-    //     btnNextSelector: ".next",
-    //     perantSlidesSelector: ".moduleapp",
-    //     btnPreviousSelector: '.prev'
-    // });
-    // New2Sliders.plusSlide();
 
 
 

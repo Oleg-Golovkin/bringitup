@@ -1,7 +1,7 @@
 import MainSliders from "./MainSliders";
 
 export default class Big2Sliders extends MainSliders {
-    constructor(btnNextSelector, perantSlidesSelector, btnPreviousSelector = "") {
+    constructor(btnNextSelector, perantSlidesSelector, btnPreviousSelector) {
         super(btnNextSelector, perantSlidesSelector);
         this.previousSlide = document.querySelectorAll(btnPreviousSelector);
     }
