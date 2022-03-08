@@ -3,24 +3,20 @@ import MainSliders from "./MainSliders";
 export default class BigSliders extends MainSliders  {
     constructor(btnNextSelector, perantSlidesSelector) {
         super (btnNextSelector, perantSlidesSelector);
+        this.slides = this.perantSlides.childNodes;
+        this.slideIndex = 1;
     }  
-
-    show(){
-        console.log(this.slides);
-    }
 
     plusSlide() {
         this.nextSlide.forEach(nextSlide => {
             nextSlide.addEventListener('click', () => {
-                this.showSlide(++this.slideIndex);
-            });          
+                this.showSlide(++this.slideIndex);                                
+            });
+            nextSlide.parentNode.previousElementSibling.addEventListener('click', ()=>{
+                this.showSlide(this.slideIndex = 1); 
+            });
+            
         });
-
-        // this.previousSlide.forEach(previousSlide => {
-        //     previousSlide.addEventListener('click', () => {
-        //         this.showSlide(--this.slideIndex);
-        //     });          
-        // });
     }
 
     showSlide(n) {

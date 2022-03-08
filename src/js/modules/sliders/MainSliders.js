@@ -1,12 +1,9 @@
 export default class MainSliders {
-    constructor({btnNextSelector = "", perantSlidesSelector = ""} = {}) {
+    constructor({btnNextSelector = null, perantSlidesSelector = null, btnPreviousSelector = null} = {}) {
         this.nextSlide = document.querySelectorAll(btnNextSelector);
         this.perantSlides = document.querySelector(perantSlidesSelector);
-        this.slides = this.perantSlides.childNodes ;
+        this.slides = this.perantSlides.childNodes;
+        this.previousSlide = document.querySelectorAll(btnPreviousSelector);
         this.slideIndex = 1;
     }
-
-    // h(){
-    //     console.log(this.slides[0]);
-    // }
 }

@@ -1,27 +1,30 @@
 import MainSliders from "./MainSliders";
 
-export default class Big2Sliders extends MainSliders {
+export default class Mini1Slider extends MainSliders {
     constructor(btnNextSelector, perantSlidesSelector, btnPreviousSelector) {
         super(btnNextSelector, perantSlidesSelector, btnPreviousSelector);
+        this.width = window.getComputedStyle(this.perantSlides).width;
     }
 
-    plusSlide() {
+    transformation() {
+        this.perantSlides.style.display = 'flex';
+        this.perantSlides.style.overflow = 'hidden';
+        this.perantSlides.style.flexWrap = 'wrap';
+        this.perantSlides.style.alingItems = 'flex-start';
+        console.log(this.width);
+    }
+
+    plusSlide() {       
         this.nextSlide.forEach(nextSlide => {
             nextSlide.addEventListener('click', () => {
                 this.showSlide(++this.slideIndex);
-            });
-            nextSlide.parentNode.previousElementSibling.addEventListener('click', ()=>{
-                this.showSlide(this.slideIndex = 1); 
             });
         });  
 
         this.previousSlide.forEach(previousSlide => {
             previousSlide.addEventListener('click', () => {
                 this.showSlide(--this.slideIndex);
-            });
-            previousSlide.parentNode.previousElementSibling.addEventListener('click', ()=>{
-                this.showSlide(this.slideIndex = 1); 
-            });
+            });            
         });
     }
 
@@ -56,6 +59,13 @@ export default class Big2Sliders extends MainSliders {
         // индексом. По умолчанию 1
         // this.slides[this.slideIndex - 1].classList.add('animate__backInDown');
         this.slides[this.slideIndex - 1].style.display = "block";
+        if (n == this.slides.length) {
+            this.slides[this.slideIndex - 1].style.display = "block";
+        } else {
+            this.slides[this.slideIndex].style.display = "block";
+        }
+        
+        
         /* добавляем один из по порядку */
         // -1, поскольку первый слайд под
         // индексом 0 
