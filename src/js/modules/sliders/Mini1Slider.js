@@ -36,7 +36,7 @@ export default class Mini1Slider extends MainSliders {
                 });
                 this.slides[0].lastChild.style.opacity = '1';
                 this.slides[0].firstChild.lastChild.style.opacity = '1'; 
-            });
+            }); 
         });
     }
 }
