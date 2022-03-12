@@ -48,7 +48,7 @@ export default class Big2Sliders extends MainSliders {
 
         this.slides.forEach(slide => {
             slide.style.display = "none";
-            slide.classList.add('animate__animated', 'animate__fadeInDown');
+            slide.classList.add('animate__animated', 'animate__fadeIn');
             // slide.classList.remove('animate__backInDown');
         });
 
