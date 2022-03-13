@@ -8,11 +8,11 @@ export default class BigSliders extends MainSliders  {
     }  
 
     plusSlide() {
-        this.nextSlide.forEach(nextSlide => {
-            nextSlide.addEventListener('click', () => {
+        this.btnNext.forEach(btnNext => {
+            btnNext.addEventListener('click', () => {
                 this.showSlide(++this.slideIndex);                                
             });
-            nextSlide.parentNode.previousElementSibling.addEventListener('click', ()=>{
+            btnNext.parentNode.previousElementSibling.addEventListener('click', ()=>{
                 this.showSlide(this.slideIndex = 1); 
             });
             

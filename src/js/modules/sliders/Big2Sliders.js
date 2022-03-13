@@ -6,20 +6,20 @@ export default class Big2Sliders extends MainSliders {
     }
 
     plusSlide() {
-        this.nextSlide.forEach(nextSlide => {
-            nextSlide.addEventListener('click', () => {
+        this.btnNext.forEach(btnNext => {
+            btnNext.addEventListener('click', () => {
                 this.showSlide(++this.slideIndex);
             });
-            nextSlide.parentNode.previousElementSibling.addEventListener('click', ()=>{
+            btnNext.parentNode.previousElementSibling.addEventListener('click', ()=>{
                 this.showSlide(this.slideIndex = 1); 
             });
         });  
 
-        this.previousSlide.forEach(previousSlide => {
-            previousSlide.addEventListener('click', () => {
+        this.btnPrevious.forEach(btnPrevious => {
+            btnPrevious.addEventListener('click', () => {
                 this.showSlide(--this.slideIndex);
             });
-            previousSlide.parentNode.previousElementSibling.addEventListener('click', ()=>{
+            btnPrevious.parentNode.previousElementSibling.addEventListener('click', ()=>{
                 this.showSlide(this.slideIndex = 1); 
             });
         });
