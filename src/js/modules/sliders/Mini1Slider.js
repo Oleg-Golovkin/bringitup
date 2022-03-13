@@ -4,9 +4,7 @@ export default class Mini1Slider extends MainSliders {
     constructor(btnNextSelector, perantSlidesSelector, btnPreviousSelector) {
         super(btnNextSelector, perantSlidesSelector, btnPreviousSelector);
     }
-
-
-
+    
     transformation() {
         try {
             this.perantSlides.style.display = 'flex';
