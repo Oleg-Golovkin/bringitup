@@ -1,6 +1,6 @@
 import MainSliders from "./MainSliders";
 
-export default class Mini1Slider extends MainSliders {
+export default class MiniSlider extends MainSliders {
     constructor(btnNextSelector, perantSlidesSelector, btnPreviousSelector) {
         super(btnNextSelector, perantSlidesSelector, btnPreviousSelector);
     }

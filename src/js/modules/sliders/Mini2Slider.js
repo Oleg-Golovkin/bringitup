@@ -3,7 +3,6 @@ import MainSliders from "./MainSliders";
 export default class Mini2Slider extends MainSliders {
     constructor(nextSlideSelector, perantSlidesSelector, previousSlideSelector) {
         super(nextSlideSelector, perantSlidesSelector, previousSlideSelector);
-        this.stopInterval = false;
 
     }
 
@@ -14,19 +13,6 @@ export default class Mini2Slider extends MainSliders {
         this.perantSlides.style.alingItems = 'flex-start';
         this.slides[0].lastChild.style.opacity = '1';
 
-    }
-
-    stopIntervalWrapper() {
-        this.slides.forEach(slide => {
-            slide.addEventListener("mouseover", () => {
-                this.stopInterval = true;
-                console.log(this.stopInterval);
-            });
-            slide.addEventListener("mouseout", () => {                
-                this.stopInterval = false;
-                console.log(this.stopInterval);
-            });
-        });
     }
 
     next() {
@@ -67,14 +53,15 @@ export default class Mini2Slider extends MainSliders {
     }
 
     interval() {
-        let interval = setInterval(() => {
-            this.next();
-        }, 2000);
+        let interval = setInterval(() => this.next(), 2000);
         this.slides.forEach(slide => {
-            slide.addEventListener("mouseover", () => {
-                if (slide.closest(".modules__content-slider")) {
-                    clearInterval(interval);
-                }
+            slide.addEventListener("mouseover", (e) => {
+                e.stopPropagation();
+                clearInterval(interval);                
+            });
+            slide.addEventListener("mouseout", (e) => {
+                interval = setInterval(() => this.next(), 2000);
+                e.stopPropagation();
             });
         });
     }
@@ -82,24 +69,7 @@ export default class Mini2Slider extends MainSliders {
     plusSlide() {
         this.nextClick();
         this.previousClick();
-        this.stopIntervalWrapper();
         this.interval();
-
-
-
-
-
-
-        // this.slides.forEach(slide => {
-        //     slide.addEventListener("mouseover", () => {
-        //         if (slide.closest(".modules__content-slider")) {
-        //             clearInterval(autoSwitching);
-        //         }
-        //     });
-        //     slide.addEventListener("mouseout", () => {
-        //         setInterval(() => this.next(), 2000);
-        //         console.log('mouseout');
-        //     });
-        // });
+        this.transformation();
     }
 }
