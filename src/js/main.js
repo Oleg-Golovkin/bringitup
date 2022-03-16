@@ -1,8 +1,5 @@
 import BigSliders from './modules/sliders/BigSliders';
 import MiniSlider from './modules/sliders/MiniSlider';
-// import Mini2Slider from './modules/sliders/Mini2Slider';
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -27,15 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
         perantSlidesSelector: ".showup__content-slider"
     });
     NewMiniSlider.plusSlide();
-    NewMiniSlider.transformation();
 
     const NewMini2Slider = new MiniSlider({
         nextSlideSelector: ".modules__info-btns .slick-next",
         previousSlideSelector: ".modules__info-btns .slick-prev",
-        perantSlidesSelector: ".modules__content-slider"
+        perantSlidesSelector: ".modules__content-slider",
+        autoPlay: true,
     });
-
-    NewMini2Slider.plusSlide();
-    NewMini2Slider.transformation();
-
+    NewMini2Slider.plusSlide();   
 });

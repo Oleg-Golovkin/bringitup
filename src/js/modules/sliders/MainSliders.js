@@ -1,10 +1,13 @@
-export default class MainSliders {
+export default 
+
+class MainSliders {
     constructor({
         nextSlideSelector = null,
         previousSlideSelector = null,
         perantSlidesSelector = null,       
         btnNextSelector = null,
-        btnPreviousSelector = null
+        btnPreviousSelector = null,
+        autoPlay = false,
     } = {}) {
         this.nextSlide = document.querySelector(nextSlideSelector);        
         this.previousSlide = document.querySelector(previousSlideSelector);
@@ -15,5 +18,6 @@ export default class MainSliders {
         this.slideIndex = 1;
         this.btnNext = document.querySelectorAll(btnNextSelector);
         this.btnPrevious = document.querySelectorAll(btnPreviousSelector);
+        this.autoPlay = autoPlay;
     }
 }
