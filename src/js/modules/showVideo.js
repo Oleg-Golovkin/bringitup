@@ -48,21 +48,25 @@ export default class ShowVideo {
             btn.addEventListener("click", (e) => {
                 // 2.1. Показывается окно с плеером
                 this.overlay.style.display = "flex";
+    //            Чтобы плеер запускался один раз. Иначе
+    // будут ошибки.
+                if (!this.player) {
                 // 3. Запускается плеер
-                //                     Этот адрес можно брать из кнопки, открывающей
+                // Этот адрес можно брать из кнопки, открывающей
                 // модальное окно, в виде дата атрибута
-                this.newPlayer('J58VPpPrmQU');
+                    this.newPlayer('J58VPpPrmQU');
+                }
+                console.log(this.player);
             });
         });
 
         // Не обязательный блок. Закрытие модального окна
-        this.overlay.addEventListener("click", (e) => {
+        this.overlay.addEventListener("click", (event) => {
             this.overlay.style.display = "none";
-            try {
-                this.player.stopVideo();
-            } catch(e) {}
+            
+            this.player.stopVideo();
 
-            if (e.target == this.close) {
+            if (event.target == this.close) {
                 this.overlay.style.display = "none";
 
             }

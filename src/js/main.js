@@ -1,6 +1,7 @@
 import BigSliders from './modules/sliders/BigSliders';
 import MiniSlider from './modules/sliders/MiniSlider';
 import showVideo from './modules/showVideo';
+import showCards from './modules/showCards';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -38,7 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
         btnSelector: ".play__circle",
         overlaySelector: ".overlay"
     });
-
     newShowVideo.init();
+
+    const cardsOne = new showCards({
+        containerSelector: '.officerold'
+    });
+    cardsOne.init();
+
+    const cardsTwo = new showCards({
+        containerSelector: '.officernew'
+    });
+    cardsTwo.init();
 
 });
