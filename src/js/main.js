@@ -1,5 +1,6 @@
 import BigSliders from './modules/sliders/BigSliders';
 import MiniSlider from './modules/sliders/MiniSlider';
+import showVideo from './modules/showVideo';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -31,5 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
         perantSlidesSelector: ".modules__content-slider",
         autoPlay: true,
     });
-    NewMini2Slider.plusSlide();   
+    NewMini2Slider.plusSlide();
+
+    const newShowVideo = new showVideo({
+        btnSelector: ".play__circle",
+        overlaySelector: ".overlay"
+    });
+
+    newShowVideo.init();
+
 });

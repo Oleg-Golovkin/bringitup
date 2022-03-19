@@ -24,8 +24,8 @@ export default class BigSliders extends MainSliders {
                     this.showSlide(this.slideIndex = 1);
                 });
             });
-        } catch(e){}
-    }
+        } catch (e) {}
+    }      
 
     showSlide(n) {
         try {
@@ -75,6 +75,8 @@ export default class BigSliders extends MainSliders {
             /* добавляем один из по порядку */
             // -1, поскольку первый слайд под
             // индексом 0 
+
+            
         } catch (e) {}
     }
 }
