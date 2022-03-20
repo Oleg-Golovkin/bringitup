@@ -1,7 +1,9 @@
 import BigSliders from './modules/sliders/BigSliders';
 import MiniSlider from './modules/sliders/MiniSlider';
-import showVideo from './modules/showVideo';
-import showCards from './modules/showCards';
+import ShowVideo from './modules/showVideo';
+import ShowCards from './modules/showCards';
+import Forms from './modules/forms';
+import MaskPhone from './modules/maskPhone';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -35,20 +37,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     NewMini2Slider.plusSlide();
 
-    const newShowVideo = new showVideo({
+    const newShowVideo = new ShowVideo({
         btnSelector: ".play__circle",
         overlaySelector: ".overlay"
     });
     newShowVideo.init();
 
-    const cardsOne = new showCards({
+    const cardsOne = new ShowCards({
         containerSelector: '.officerold'
     });
     cardsOne.init();
 
-    const cardsTwo = new showCards({
+    const cardsTwo = new ShowCards({
         containerSelector: '.officernew'
     });
     cardsTwo.init();
 
+    const NewFoms = new Forms({formSelector: '.form'});
+    NewFoms.formsAll();
+
+    const NewMaskPhone = new MaskPhone();
+    NewMaskPhone.initMask();
 });

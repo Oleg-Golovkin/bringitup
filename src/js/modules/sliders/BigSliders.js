@@ -52,7 +52,6 @@ export default class BigSliders extends MainSliders {
                 this.hanson.classList.add("animate__animated", "animate__fadeInUpBig");
                 if (this.slideIndex == 3) {
                     setTimeout(() => {
-                        console.log(this.hanson);
                         this.hanson.style.display = "block";
                     }, 1000);
                 }

@@ -80,7 +80,6 @@ export default class MiniSlider extends MainSliders {
     plusSlide() {
         this.nextClick();
         this.previousClick();
-        console.log(this.autoPlay);
         if (this.autoPlay) {
             this.interval();
         }

@@ -1,4 +1,4 @@
-export default class showCards {
+export default class ShowCards {
     constructor({
         containerSelector
     }) {
