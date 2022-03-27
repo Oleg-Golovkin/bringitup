@@ -33,9 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
         nextSlideSelector: ".modules__info-btns .slick-next",
         previousSlideSelector: ".modules__info-btns .slick-prev",
         perantSlidesSelector: ".modules__content-slider",
-        autoPlay: true,
+        // autoPlay: true,
     });
     NewMini2Slider.plusSlide();
+
+    const NewMini3Slider = new MiniSlider({
+        nextSlideSelector: ".feed__slider .slick-next",
+        previousSlideSelector: ".feed__slider .slick-prev",
+        perantSlidesSelector: ".feed__slider",
+        
+    });
+    NewMini3Slider.plusSlide();
 
     const newShowVideo = new ShowVideo({
         btnSelector: ".play__circle",
