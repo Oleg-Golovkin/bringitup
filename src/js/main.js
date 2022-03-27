@@ -53,9 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     cardsTwo.init();
 
-    const NewFoms = new Forms({formSelector: '.form'});
-    NewFoms.formsAll();
+    new Forms({formSelector: '.form'}).formsAll();
 
-    const NewMaskPhone = new MaskPhone();
-    NewMaskPhone.initMask();
+    new MaskPhone().initMask();
 });

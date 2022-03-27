@@ -3,8 +3,11 @@ export default class ShowCards {
         containerSelector
     }) {
         this.container = document.querySelector(containerSelector);
-        this.cards = this.container.querySelectorAll(".officer__card-item");
-        this.plus = this.container.querySelector(".plus");
+        try {
+            this.cards = this.container.querySelectorAll(".officer__card-item");
+
+            this.plus = this.container.querySelector(".plus");
+        } catch (e) {}
         this.index = 0;
     }
 
@@ -15,26 +18,28 @@ export default class ShowCards {
         });
     }
 
-    showLastCards() {        
+    showLastCards() {
         this.cards[this.cards.length - 1].style.display = 'flex';
     }
 
     plusIndex() {
         this.plus.addEventListener("click", () => {
-            this.plusCard(this.index +=1);
-        });        
+            this.plusCard(this.index += 1);
+        });
     }
 
-    plusCard(n) {        
-        if(n >= this.cards.length - 1) {
+    plusCard(n) {
+        if (n >= this.cards.length - 1) {
             this.index = this.cards.length - 1;
         }
         this.cards[this.index - 1].style.display = 'flex';
     }
 
     init() {
-        this.hideCards();
-        this.showLastCards();
-        this.plusIndex();
+        try {
+            this.hideCards();
+            this.showLastCards();
+            this.plusIndex();
+        } catch (e) {}
     }
 }

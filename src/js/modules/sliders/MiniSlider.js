@@ -78,36 +78,15 @@ export default class MiniSlider extends MainSliders {
     }
 
     plusSlide() {
-        this.nextClick();
-        this.previousClick();
-        if (this.autoPlay) {
-            this.interval();
-        }
+        try {
+            this.nextClick();
+            this.previousClick();
+
+            if (this.autoPlay) {
+                this.interval();
+            }
+        } catch (e) {}
         this.transformation();
     }
 
-    // plusSlide() {
-    //     this.nextSlide.addEventListener('click', () => {
-    //         this.perantSlides.append(this.slides[0]);
-    //         this.slides.forEach(slide => {
-    //             slide.lastChild.style.opacity = '0.4';
-    //             slide.firstChild.lastChild.style.opacity = '0';
-    //             slide.classList.remove("card-active");
-    //         });
-    //         this.slides[0].lastChild.style.opacity = '1';
-    //         this.slides[0].firstChild.lastChild.style.opacity = '1';
-    //         this.slides[0].classList.add("card-active");
-    //     });
-
-    //     this.previousSlide.addEventListener('click', () => {
-    //         this.perantSlides.prepend(this.slides[this.slides.length - 1]);
-    //         this.slides.forEach(slide => {
-    //             slide.lastChild.style.opacity = '0.4';
-    //             slide.firstChild.lastChild.style.opacity = '0';
-    //         });
-    //         this.slides[0].lastChild.style.opacity = '1';
-    //         this.slides[0].firstChild.lastChild.style.opacity = '1';
-    //     });
-
-    // }
 }

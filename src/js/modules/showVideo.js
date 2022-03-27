@@ -49,14 +49,14 @@ export default class ShowVideo {
                 // 2.1. Показывается окно с плеером
                 this.overlay.style.display = "flex";
     //            Чтобы плеер запускался один раз. Иначе
-    // будут ошибки.
+    // будут ошибки.                
+                const path =e.target.firstChild.firstChild.getAttribute('fill');
                 if (!this.player) {
                 // 3. Запускается плеер
                 // Этот адрес можно брать из кнопки, открывающей
                 // модальное окно, в виде дата атрибута
-                    this.newPlayer('J58VPpPrmQU');
+                    this.newPlayer(`${path}`);
                 }
-                console.log(this.player);
             });
         });
 

@@ -5,28 +5,39 @@ export default class Forms {
         this.forms = document.querySelectorAll(formSelector);
     }
 
-    formsAll() {
-        this.forms.forEach(form => {
-            this.postForms(form);
-        });
-    }
-
     ShowThanksModal(form) {
         const img = document.createElement("img"),
             parent = form.parentNode;
         form.remove();
         parent.append(img);
-        img.src = "assets/img/ok.jpg";
-        img.style.width = "500px";
-        img.style.height = "500px";
+        img.src = "assets/img/ok.png";
+        img.style.width = "200px";
+        img.style.height = "200px";
         img.style.margin = "0 auto";
-
+        img.style.marginTop = "20%";
+        img.style.display = "block";
+        img.classList.add('animate__animated', 'animate__fadeIn');
         setTimeout(function () {
             img.remove();
             parent.append(form);
         }, 2000);
     }
 
+    validateEmail() {
+        const email = document.querySelectorAll('[name="email"]');
+        email.forEach(email => {
+            email.addEventListener("input", (e) => {
+                email.value = email.value.replace(/[а-яА-Я]/, '');
+            });
+        });
+    }
+
+    formsAll() {
+        this.forms.forEach(form => {
+            this.postForms(form);
+        });
+        this.validateEmail();      
+    }
 
     postForms(form) {
         form.addEventListener("submit", (e) => {
@@ -61,7 +72,7 @@ export default class Forms {
         // о том, что  информация отправлена .then 
         // или нет .catch
         return await res.text();
-    };
+    }
 
 
 
