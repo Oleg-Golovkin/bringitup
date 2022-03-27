@@ -2,20 +2,34 @@ export default class Forms {
     constructor({
         formSelector
     }) {
-        this.forms = document.querySelectorAll(formSelector);        
+        this.forms = document.querySelectorAll(formSelector);
     }
 
     formsAll() {
         this.forms.forEach(form => {
-            // console.log(form);
             this.postForms(form);
         });
     }
 
+    ShowThanksModal(form) {
+        const img = document.createElement("img"),
+            parent = form.parentNode;
+        form.remove();
+        parent.append(img);
+        img.src = "assets/img/ok.jpg";
+        img.style.width = "500px";
+        img.style.height = "500px";
+        img.style.margin = "0 auto";
+
+        setTimeout(function () {
+            img.remove();
+            parent.append(form);
+        }, 2000);
+    }
+
+
     postForms(form) {
-        console.log(form);
         form.addEventListener("submit", (e) => {
-            console.log('form');
             e.preventDefault();
             const formData = new FormData(form);
             this.post("assets/question.php", formData)
@@ -26,20 +40,19 @@ export default class Forms {
                 // действия
                 .then(data => {
                     console.log(data);
-                    // statusMessage.textContent = message.success;
+                    this.ShowThanksModal(form);
                 })
                 .catch(() => {
                     console.log('хуй');
-                    // statusMessage.textContent = message.failure;
                 })
                 .finally(() => {
-                    // form.reset();
+                    form.reset();
                 });
         });
     }
 
-    async post (url, request) {
-        let  res = await fetch(url, {
+    async post(url, request) {
+        let res = await fetch(url, {
             method: "POST",
             // отправляем информацию на сервер
             body: request

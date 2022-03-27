@@ -1,81 +1,87 @@
 export default class MaskPhone {
     constructor() {}
     initMask() {
-        console.log('dfsdf');   
-        var phoneInputs = document.querySelectorAll('#phone');
+        // При нажатии на input курсор ставить вперед     
+        let setCursorPosition = (pos, elem) => {
+            elem.focus();
+            if (elem.setSelectionRange) {
+                elem.setSelectionRange(pos, pos);
+            } else if (elem.createTextRange) {
+                let range = elem.createTextRange();
 
-        var getInputNumbersValue = function (input) {
-            // Return stripped input value — just numbers
-            return input.value.replace(/\D/g, '');
-        };
-
-        var onPhonePaste = function (e) {
-            var input = e.target,
-                inputNumbersValue = getInputNumbersValue(input);
-            var pasted = e.clipboardData || window.clipboardData;
-            if (pasted) {
-                var pastedText = pasted.getData('Text');
-                if (/\D/g.test(pastedText)) {
-                    // Attempt to paste non-numeric symbol — remove all non-numeric symbols,
-                    // formatting will be in onPhoneInput handler
-                    input.value = inputNumbersValue;
-                    return;
-                }
+                range.collapse(true);
+                range.moveEnd('character', pos);
+                range.moveStart('character', pos);
+                range.select();
             }
         };
+        // В функцию помещаем событие input, т.е. сам input
+        // Соответственно ниже this.value это input.value
+        function createMask(event) {
+            // маска номера телефона
+            // Ее ручное изменение порождает новую форму маски
 
-        var onPhoneInput = function (e) {
-            var input = e.target,
-                inputNumbersValue = getInputNumbersValue(input),
-                selectionStart = input.selectionStart,
-                formattedInputValue = "";
-
-            if (!inputNumbersValue) {
-                return input.value = "";
+            let matrix = '+1 (___) ___-__',
+                i = 0,
+                // Статика.
+                // Получаем все g не цифры \D и заменяем их пустой строкой
+                // + и 7 относятся к цифрам.
+                def = matrix.replace(/\D/g, ''),
+                // Динамика. При вводе информации в input.
+                // Получаем все g не цифры \D и заменяем их пустой строкой
+                // + и 7 относятся к цифрам.
+                val = this.value.replace(/\D/g, '');
+            // Чтобы невозможно было удалить из маски символы + или 1
+            // Если длина строки input (val.length) будет меньше или равно дефолтного значения
+            // (маски - matrix) то вновь в input записывается маска val = def
+            if (def.length >= val.length) {
+                val = def;
             }
-
-            if (input.value.length != selectionStart) {
-                // Editing in the middle of input, not last symbol
-                if (e.data && /\D/g.test(e.data)) {
-                    // Attempt to input non-numeric symbol
-                    input.value = inputNumbersValue;
+            // Функция, которая при вводе в input инф. удаляет нижнее подчеркивание,
+            // но оставляет скобочки и вводимые цифры. Буквы
+            // уже отсеклись (val = this.value.replace(/\D/g, ''))
+            // 1. В методе .replace второй аргумент функция function (a)!
+            // 2. В этой функции аргумент a - каждый символ, вводимый в input
+            console.log(val.length);
+            
+            this.value = matrix.replace(/./g, function (a) {
+                // Если до ?
+                // 2.1. /[_\d]/ ищем в диапозоне [] нижнее подчеркивание _ и \ цифры d.
+                // 2.2. .test(a) проверяем является ли ими вводимые символы.
+                // и
+                // 2.3. i < val.length чтобы условие выполнялось до
+                // последнего значения маски +1 (___) __-___
+                // то после ?
+                // 2.4. .charAt() возращает вводимый символ по его индексу
+                // i++ чтобы перебирался следующий символ
+                // 2.5. Если символов больше, чем должно быть i >= val.length ? '',
+                // для этого i увеличиваем на один при каждом вводе,
+                // то возвращаем пустую строку
+                // 2.6. В остальных случаях возвращаем вводимый символ    
+                          
+                return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
+            });
+            // 3. Если табнуть вне маски, то маска очищается
+            if (event.type === 'blur') {
+                if (this.value.length == 2) {
+                    this.value = '';
                 }
-                return;
-            }
-
-            if (["1", "2", "3", "4", "5", "6", "7", "8", "9"].indexOf(inputNumbersValue[0]) > -1) {
-                if (inputNumbersValue[0] == "9") inputNumbersValue = "1" + inputNumbersValue;
-                var firstSymbols = (inputNumbersValue[0] == "8") ? "8" : "+1";
-                formattedInputValue = input.value = firstSymbols + " ";
-                if (inputNumbersValue.length > 1) {
-                    formattedInputValue += '(' + inputNumbersValue.substring(1, 4);
-                }
-                if (inputNumbersValue.length >= 5) {
-                    formattedInputValue += ') ' + inputNumbersValue.substring(4, 7);
-                }
-                if (inputNumbersValue.length >= 8) {
-                    formattedInputValue += '-' + inputNumbersValue.substring(7, 9);
-                }
-                if (inputNumbersValue.length >= 10) {
-                    formattedInputValue += '-' + inputNumbersValue.substring(9, 11);
-                }
+                // 3.1. Во всех остальных случаях курсор ставить вперед.
             } else {
-                formattedInputValue = '+' + inputNumbersValue.substring(0, 16);
+                setCursorPosition(this.value.length, this);
             }
-            input.value = formattedInputValue;
-        };
-        var onPhoneKeyDown = function (e) {
-            // Clear input after remove last symbol
-            var inputValue = e.target.value.replace(/\D/g, '');
-            if (e.keyCode == 8 && inputValue.length == 1) {
-                e.target.value = "";
-            }
-        };
-        for (var phoneInput of phoneInputs) {
-            phoneInput.addEventListener('keydown', onPhoneKeyDown);
-            phoneInput.addEventListener('input', onPhoneInput, false);
-            phoneInput.addEventListener('paste', onPhonePaste, false);
         }
+
+
+
+        // Присваиваем input, где будет маска
+        let inputs = document.querySelectorAll("#phone");
+
+        inputs.forEach(input => {
+            input.addEventListener('input', createMask);
+            input.addEventListener('focus', createMask);
+            input.addEventListener('blur', createMask);
+        });
     }
 
 }
