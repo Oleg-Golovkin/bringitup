@@ -41,15 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
         nextSlideSelector: ".feed__slider .slick-next",
         previousSlideSelector: ".feed__slider .slick-prev",
         perantSlidesSelector: ".feed__slider",
-        
+
     });
     NewMini3Slider.plusSlide();
 
-    const newShowVideo = new ShowVideo({
-        btnSelector: ".play__circle",
+    new ShowVideo({
+        btnSelector: ".schedule .play__circle",
         overlaySelector: ".overlay"
-    });
-    newShowVideo.init();
+    }).init();
+    
+    new ShowVideo({
+        btnSelector: ".module__video-item .play__circle",
+        overlaySelector: ".overlay"
+    }).init();
+
+    // E8iYMQIY9dk
 
     const cardsOne = new ShowCards({
         containerSelector: '.officerold'
@@ -61,7 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     cardsTwo.init();
 
-    new Forms({formSelector: '.form'}).formsAll();
+    new Forms({
+        formSelector: '.form'
+    }).formsAll();
 
     new MaskPhone().initMask();
 });

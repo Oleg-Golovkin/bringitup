@@ -50,7 +50,7 @@ export default class ShowVideo {
                 this.overlay.style.display = "flex";
     //            Чтобы плеер запускался один раз. Иначе
     // будут ошибки.                
-                const path =e.target.firstChild.firstChild.getAttribute('fill');
+                const path = e.target.firstChild.firstChild.getAttribute('fill');
                 if (!this.player) {
                 // 3. Запускается плеер
                 // Этот адрес можно брать из кнопки, открывающей
