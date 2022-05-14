@@ -13,6 +13,8 @@ export default class ShowVideo {
         this.close = this.overlay.querySelector(".close");
     }
 
+    
+
     // 2. Функция создания плеера. 
     newPlayer(url) {
         // Пустая переменная, к которой присваевается
@@ -29,7 +31,7 @@ export default class ShowVideo {
         });
     }
 
-    init() {
+    init() {       
         //1. Создается тэг script (код иднетичен тому, который
         // на оф. сайте 
         // https://developers.google.com/youtube/iframe_api_reference?hl=ru#Loading_a_Video_Player))
@@ -42,20 +44,25 @@ export default class ShowVideo {
         //  созданный здесь тэг скрипта
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-
         // 2. При нажатии на кнопку
         this.btn.forEach(btn => {
             btn.addEventListener("click", (e) => {
                 // 2.1. Показывается окно с плеером
-                this.overlay.style.display = "flex";
-    //            Чтобы плеер запускался один раз. Иначе
-    // будут ошибки.                
-                const path = e.target.firstChild.firstChild.getAttribute('fill');
+                this.overlay.style.display = "flex"; 
+                // Берем адресс видео из нажимаемой кнопки              
+                this.path = btn.getAttribute('fill');
+                //Чтобы плеер запускался один раз. Иначе
+                // будут ошибки.
                 if (!this.player) {
-                // 3. Запускается плеер
-                // Этот адрес можно брать из кнопки, открывающей
-                // модальное окно, в виде дата атрибута
-                    this.newPlayer(`${path}`);
+                    // 3. Запускается плеер
+                    // Этот адрес можно брать из кнопки, открывающей
+                    // модальное окно, в виде дата атрибута 
+                    console.log(this.path); 
+                    this.newPlayer(`${this.path}`);
+                } else { 
+    // Не можем запустить другое видео передав другой оргумент path.
+    // Чтобы это сделать, нужно использовать следующую функцию.                 
+                    this.player.loadVideoById({videoId:this.path});
                 }
             });
         });
@@ -63,9 +70,11 @@ export default class ShowVideo {
         // Не обязательный блок. Закрытие модального окна
         this.overlay.addEventListener("click", (event) => {
             this.overlay.style.display = "none";
-            
-            this.player.stopVideo();
-
+            // Если несколько кнопок с виедо, чтобы остальные
+            // не выдавали ошибки
+            if(this.player) {
+                this.player.stopVideo();
+            }            
             if (event.target == this.close) {
                 this.overlay.style.display = "none";
 

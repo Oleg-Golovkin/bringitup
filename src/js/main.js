@@ -4,6 +4,8 @@ import ShowVideo from './modules/showVideo';
 import ShowCards from './modules/showCards';
 import Forms from './modules/forms';
 import MaskPhone from './modules/maskPhone';
+import ShowText from './modules/showText';
+import Download from './modules/download';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -33,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         nextSlideSelector: ".modules__info-btns .slick-next",
         previousSlideSelector: ".modules__info-btns .slick-prev",
         perantSlidesSelector: ".modules__content-slider",
-        // autoPlay: true,
     });
     NewMini2Slider.plusSlide();
 
@@ -46,16 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
     NewMini3Slider.plusSlide();
 
     new ShowVideo({
-        btnSelector: ".schedule .play__circle",
+        btnSelector: ".showup__wrapper .play__circle",
         overlaySelector: ".overlay"
     }).init();
-    
+
     new ShowVideo({
         btnSelector: ".module__video-item .play__circle",
         overlaySelector: ".overlay"
     }).init();
 
-    // E8iYMQIY9dk
 
     const cardsOne = new ShowCards({
         containerSelector: '.officerold'
@@ -72,4 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }).formsAll();
 
     new MaskPhone().initMask();
+
+    new ShowText({
+        plusSelector: ".plus",
+        textSelector: ".msg",
+    }).init();
+
+    new Download({
+        btnSelector: ".download",
+    }).init();
+
+
 });
