@@ -10,7 +10,6 @@ export default class ShowText {
     init() {
         this.plus.forEach((item, i) => {
             item.addEventListener('click', () => {
-                console.log(window.getComputedStyle(this.text[i]).display);
                 if (window.getComputedStyle(this.text[i]).display == "none") {
                     this.text[i].style.display = "block";
                 } else {
